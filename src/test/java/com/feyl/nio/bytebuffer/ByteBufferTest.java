@@ -1,4 +1,4 @@
-package com.feyl.netty.bytebuffer;
+package com.feyl.nio.bytebuffer;
 
 import lombok.extern.slf4j.Slf4j;
 

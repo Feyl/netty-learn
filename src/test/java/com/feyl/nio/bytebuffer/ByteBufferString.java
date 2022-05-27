@@ -1,9 +1,9 @@
-package com.feyl.netty.bytebuffer;
+package com.feyl.nio.bytebuffer;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-import static com.feyl.netty.util.ByteBufferUtil.debugAll;
+import static com.feyl.nio.util.ByteBufferUtil.debugAll;
 
 /**
  * @author Feyl

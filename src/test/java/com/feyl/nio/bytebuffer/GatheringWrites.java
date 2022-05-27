@@ -1,4 +1,4 @@
-package com.feyl.netty.bytebuffer;
+package com.feyl.nio.bytebuffer;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;

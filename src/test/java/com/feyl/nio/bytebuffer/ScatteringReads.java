@@ -1,11 +1,11 @@
-package com.feyl.netty.bytebuffer;
+package com.feyl.nio.bytebuffer;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-import static com.feyl.netty.util.ByteBufferUtil.debugAll;
+import static com.feyl.nio.util.ByteBufferUtil.debugAll;
 
 /**
  * 分散度/集中写可以减少数据在ByteBuffer之间的拷贝

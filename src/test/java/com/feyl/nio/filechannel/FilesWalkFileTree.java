@@ -1,4 +1,4 @@
-package com.feyl.netty.filechannel;
+package com.feyl.nio.filechannel;
 
 import java.io.IOException;
 import java.nio.file.*;

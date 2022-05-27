@@ -1,8 +1,8 @@
-package com.feyl.netty.bytebuffer;
+package com.feyl.nio.bytebuffer;
 
 import java.nio.ByteBuffer;
 
-import static com.feyl.netty.util.ByteBufferUtil.debugAll;
+import static com.feyl.nio.util.ByteBufferUtil.debugAll;
 
 /**
  * @author Feyl

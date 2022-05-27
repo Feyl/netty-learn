@@ -1,4 +1,4 @@
-package com.feyl.netty.util;
+package com.feyl.nio.util;
 
 import io.netty.util.internal.StringUtil;
 
