@@ -1,11 +1,11 @@
 package com.feyl.nio.bytebuffer;
 
+import com.feyl.nio.util.ByteBufferUtil;
+
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-
-import static com.feyl.nio.util.ByteBufferUtil.debugAll;
 
 /**
  * 分散度/集中写可以减少数据在ByteBuffer之间的拷贝
@@ -24,9 +24,9 @@ public class ScatteringReads {
             b1.flip();
             b2.flip();
             b3.flip();
-            debugAll(b1);
-            debugAll(b2);
-            debugAll(b3);
+            ByteBufferUtil.debugAll(b1);
+            ByteBufferUtil.debugAll(b2);
+            ByteBufferUtil.debugAll(b3);
         } catch (IOException e) {
         }
     }

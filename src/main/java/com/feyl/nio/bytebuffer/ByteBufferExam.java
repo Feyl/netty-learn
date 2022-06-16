@@ -1,8 +1,8 @@
 package com.feyl.nio.bytebuffer;
 
-import java.nio.ByteBuffer;
+import com.feyl.nio.util.ByteBufferUtil;
 
-import static com.feyl.nio.util.ByteBufferUtil.debugAll;
+import java.nio.ByteBuffer;
 
 /**
  *  黏包/半包 现象：
@@ -42,7 +42,7 @@ public class ByteBufferExam {
                 for (int j = 0; j < length; j++) {
                     target.put(source.get());
                 }
-                debugAll(target);
+                ByteBufferUtil.debugAll(target);
             }
         }
         source.compact(); //写模式

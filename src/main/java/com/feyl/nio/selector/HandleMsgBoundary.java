@@ -1,5 +1,6 @@
 package com.feyl.nio.selector;
 
+import com.feyl.nio.util.ByteBufferUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
@@ -10,8 +11,6 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
-
-import static com.feyl.nio.util.ByteBufferUtil.debugAll;
 
 /**
  * 处理消息边界：附件与扩容
@@ -32,7 +31,7 @@ public class HandleMsgBoundary {
                 for (int j = 0; j < length; j++) {
                     target.put(source.get());
                 }
-                debugAll(target);
+                ByteBufferUtil.debugAll(target);
             }
         }
         source.compact(); // 0123456789abcdef  position 16 limit 16

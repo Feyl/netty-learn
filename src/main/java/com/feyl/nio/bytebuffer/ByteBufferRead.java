@@ -1,8 +1,8 @@
 package com.feyl.nio.bytebuffer;
 
-import java.nio.ByteBuffer;
+import com.feyl.nio.util.ByteBufferUtil;
 
-import static com.feyl.nio.util.ByteBufferUtil.debugAll;
+import java.nio.ByteBuffer;
 
 /**
  * @author Feyl
@@ -38,6 +38,6 @@ public class ByteBufferRead {
 
         // get(i) 不会改变读索引的位置
         System.out.println((char) buffer.get(1));
-        debugAll(buffer);
+        ByteBufferUtil.debugAll(buffer);
     }
 }
