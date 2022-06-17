@@ -14,8 +14,8 @@ import java.util.Iterator;
 
 /**
  * 处理消息边界：附件与扩容
+ *
  * @author Feyl
- * @date 2022/5/27 13:22
  */
 @Slf4j
 public class HandleMsgBoundary {

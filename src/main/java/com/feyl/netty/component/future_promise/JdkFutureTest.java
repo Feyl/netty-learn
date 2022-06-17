@@ -1,12 +1,12 @@
-package com.feyl.netty.future_promise;
+package com.feyl.netty.component.future_promise;
 
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.*;
 
 /**
+ *
  * @author Feyl
- * @date 2022/6/8 23:19
  */
 @Slf4j
 public class JdkFutureTest {

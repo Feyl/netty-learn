@@ -7,7 +7,6 @@ import java.nio.channels.SocketChannel;
 
 /**
  * @author Feyl
- * @date 2022/5/27 13:41
  */
 public class WriteClient {
     public static void main(String[] args) throws IOException {

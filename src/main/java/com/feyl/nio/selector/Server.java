@@ -14,8 +14,14 @@ import java.util.Iterator;
 
 /**
  * 使用 nio 理解阻塞模式
+ *
+ * 事件类型：
+ *      accept：会在有连接请求时触发       （SelectionKey.OP_ACCEPT）
+ *      connect：是客户端，连接建立后触发
+ *      read：可读事件           （SelectionKey.OP_READ）
+ *      write：可写事件
+ *
  * @author Feyl
- * @date 2022/5/27 9:45
  */
 @Slf4j
 public class Server {
@@ -39,6 +45,7 @@ public class Server {
             // select 在事件未处理时，它不会阻塞, 事件发生后要么处理，要么取消，不能置之不理
             selector.select();
             // 4. 处理事件, selectedKeys 内部包含了所有发生的事件
+            //  在遍历过程中删除元素不要使用增强for，要使用迭代器遍历
             Iterator<SelectionKey> iter = selector.selectedKeys().iterator(); // accept, read
             while (iter.hasNext()) {
                 SelectionKey key = iter.next();
@@ -50,12 +57,11 @@ public class Server {
                     ServerSocketChannel channel = (ServerSocketChannel) key.channel();
                     SocketChannel sc = channel.accept();
                     sc.configureBlocking(false);
-
                     SelectionKey scKey = sc.register(selector, 0, null);
                     scKey.interestOps(SelectionKey.OP_READ);
                     log.debug("{}", sc);
                     log.debug("scKey:{}", scKey);
-                } else if (key.isReadable()) { // 如果是 read事件
+                } else if (key.isReadable()) { // 如果是 read事件（客户端 关闭/断开连接 也会触发 read事件）
                     try {
                         SocketChannel channel = (SocketChannel) key.channel(); // 拿到触发事件的channel
                         ByteBuffer buffer = ByteBuffer.allocate(4);
@@ -69,7 +75,7 @@ public class Server {
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
-                        key.cancel();  // 因为客户端断开了,因此需要将 key 取消（从 selector 的 keys 集合中真正删除 key）
+                        key.cancel();  // 因为客户端断开了，因此需要将 key 取消（从 selector 的 keys 集合中真正删除 key）
                     }
                 }
             }

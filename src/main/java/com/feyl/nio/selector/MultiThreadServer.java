@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author Feyl
- * @date 2022/5/27 22:14
  */
 @Slf4j
 public class MultiThreadServer {
@@ -25,7 +24,7 @@ public class MultiThreadServer {
         bossKey.interestOps(SelectionKey.OP_ACCEPT);
         ssc.bind(new InetSocketAddress(8080));
         // 1. 创建固定数量的 worker 并初始化
-        Worker[] workers = new Worker[Runtime.getRuntime().availableProcessors()];
+        Worker[] workers = new Worker[Runtime.getRuntime().availableProcessors()]; // worker 数量等于 CPU 核心数
         for (int i = 0; i < workers.length; i++) {
             workers[i] = new Worker("worker-" + i);
         }
@@ -55,6 +54,7 @@ public class MultiThreadServer {
         private Selector selector;
         private String name;
         private volatile boolean start = false; // 还未初始化
+
         private ConcurrentLinkedQueue<Runnable> queue = new ConcurrentLinkedQueue<>();
         public Worker(String name) {
             this.name = name;

@@ -9,8 +9,8 @@ import io.netty.handler.codec.string.StringEncoder;
 import java.net.InetSocketAddress;
 
 /**
+ *
  * @author Feyl
- * @date 2022/5/28 20:40
  */
 public class Client {
     public static void main(String[] args) throws InterruptedException {
@@ -32,6 +32,6 @@ public class Client {
                 .sync() //阻塞方法，直到连接建立
                 .channel() //代表连接对象
                 // 6. 向服务器发送数据
-                .writeAndFlush("hello, world!");
+                .writeAndFlush("hello, world!"); //发送数据
     }
 }

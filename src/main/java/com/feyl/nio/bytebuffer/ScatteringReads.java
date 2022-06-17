@@ -12,7 +12,6 @@ import java.nio.channels.FileChannel;
  *
  * 分散读
  * @author Feyl
- * @date 2022/5/26 16:39
  */
 public class ScatteringReads {
     public static void main(String[] args) {

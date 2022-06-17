@@ -19,7 +19,6 @@ import java.nio.ByteBuffer;
  *  黏包/半包 分析 解析
  *
  * @author Feyl
- * @date 2022/5/26 16:52
  */
 public class ByteBufferExam {
     public static void main(String[] args) {
@@ -35,7 +34,7 @@ public class ByteBufferExam {
         for (int i = 0; i < source.limit(); i++) {
             // 找到一条完整消息
             if (source.get(i) == '\n') {
-                int length = i - source.position();
+                int length = i + 1 - source.position();
                 // 把这条完整消息存入新的 ByteBuffer
                 ByteBuffer target = ByteBuffer.allocate(length);
                 // 从 source 读，向 target 写

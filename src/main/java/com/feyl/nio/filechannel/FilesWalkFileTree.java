@@ -9,9 +9,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 遍历（删除）多级目录
  *
  * @author Feyl
- * @date 2022/5/26 22:49
  */
 public class FilesWalkFileTree {
+
+    /**
+     * 删除路径（文件夹/文件）中的所有内容
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
 //        Files.delete(Paths.get("E:\del"));
         Files.walkFileTree(Paths.get("E:\\del"), new SimpleFileVisitor<Path>() {
@@ -28,6 +34,11 @@ public class FilesWalkFileTree {
         });
     }
 
+    /**
+     * 统计 JDK1.8文件中 .jar的数量
+     *
+     * @throws IOException
+     */
     private static void m2() throws IOException {
         AtomicInteger jarCount = new AtomicInteger();
         Files.walkFileTree(Paths.get("D:\\Java\\JDK1.8"), new SimpleFileVisitor<Path>(){
@@ -43,10 +54,16 @@ public class FilesWalkFileTree {
         System.out.println("jar count:" +jarCount);
     }
 
-    //设计模式：访问者模式
+    /**
+     * 统计路径（文件夹/文件）中文件夹和文件的数量
+     *
+     * @throws IOException
+     */
     private static void m1() throws IOException {
         AtomicInteger dirCount = new AtomicInteger();
         AtomicInteger fileCount = new AtomicInteger();
+        //设计模式：访问者模式
+
         Files.walkFileTree(Paths.get("D:\\Java\\JDK1.8"), new SimpleFileVisitor<Path>(){
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {

@@ -1,4 +1,4 @@
-package com.feyl.netty.pipeline_handler;
+package com.feyl.netty.component.pipeline_handler;
 
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -10,8 +10,8 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ *
  * @author Feyl
- * @date 2022/6/9 8:48
  */
 @Slf4j
 public class PipelineTest {
@@ -24,19 +24,19 @@ public class PipelineTest {
                     protected void initChannel(NioSocketChannel ch) throws Exception {
                         // 1. 通过 channel 拿到 pipeline
                         ChannelPipeline pipeline = ch.pipeline();
-                        // 2. 添加处理器 head ->  h1 -> h2 ->  h4 -> h3 -> h5 -> h6 -> tail
+                        // 2. 添加处理器 head ->  h1 -> h2 ->  h4 -> h3 -> h5 -> h6 -> tail （底层为双向链表）
                         pipeline.addLast("h1", new ChannelInboundHandlerAdapter(){
                             @Override
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 log.debug("1");
-                                super.channelRead(ctx, msg);
+                                super.channelRead(ctx, msg); //将数据传递给下一个 handler，如果不调用，调用链会断开
                             }
                         });
                         pipeline.addLast("h2", new ChannelInboundHandlerAdapter(){
                             @Override
-                            public void channelRead(ChannelHandlerContext ctx, Object name) throws Exception {
+                            public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 log.debug("2");
-                                super.channelRead(ctx, name); // 将数据传递给下个 handler，如果不调用，调用链会断开 或者调用 ctx.fireChannelRead(student);
+                                super.channelRead(ctx, msg); // 将数据传递给下个 handler，如果不调用，调用链会断开 或者调用 ctx.fireChannelRead(student);
                             }
                         });
 
@@ -45,6 +45,7 @@ public class PipelineTest {
                             public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                 log.debug("3");
                                 ctx.writeAndFlush(ctx.alloc().buffer().writeBytes("server...".getBytes()));
+                                //输出时是从 最后一个输出 handler 向前响应输出。
 //                                ch.writeAndFlush(ctx.alloc().buffer().writeBytes("server...".getBytes()));
                             }
                         });

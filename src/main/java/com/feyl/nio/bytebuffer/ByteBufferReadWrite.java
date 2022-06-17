@@ -10,7 +10,6 @@ import java.nio.ByteBuffer;
  * capacity：buffer缓冲区大小
  *
  * @author Feyl
- * @date 2022/5/26 15:54
  */
 public class ByteBufferReadWrite {
     public static void main(String[] args) {

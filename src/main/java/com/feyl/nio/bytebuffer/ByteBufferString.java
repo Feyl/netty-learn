@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * @author Feyl
- * @date 2022/5/26 16:30
  */
 public class ByteBufferString {
     public static void main(String[] args) {
@@ -28,6 +27,7 @@ public class ByteBufferString {
         String str1 = StandardCharsets.UTF_8.decode(buffer2).toString();
         System.out.println(str1);
 
+        // 需要先切换为读模式，再进行转换
 //        buffer1.flip();
         String str2 = StandardCharsets.UTF_8.decode(buffer1).toString();
         System.out.println(str2);

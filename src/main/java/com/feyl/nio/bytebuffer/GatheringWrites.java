@@ -9,7 +9,6 @@ import java.nio.charset.StandardCharsets;
 /**
  * 集中写
  * @author Feyl
- * @date 2022/5/26 16:41
  */
 public class GatheringWrites {
     public static void main(String[] args) {

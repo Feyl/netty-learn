@@ -12,7 +12,6 @@ import java.util.Iterator;
 
 /**
  * @author Feyl
- * @date 2022/5/27 13:32
  */
 public class WriteServer {
     public static void main(String[] args) throws IOException {

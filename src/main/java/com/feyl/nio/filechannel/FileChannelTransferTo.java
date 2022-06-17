@@ -8,7 +8,6 @@ import java.nio.channels.FileChannel;
 /**
  * 传输数据
  * @author Feyl
- * @date 2022/5/26 17:16
  */
 public class FileChannelTransferTo {
     public static void main(String[] args) {

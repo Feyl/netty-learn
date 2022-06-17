@@ -1,4 +1,4 @@
-package com.feyl.netty.future_promise;
+package com.feyl.netty.component.future_promise;
 
 import io.netty.channel.EventLoop;
 import io.netty.channel.nio.NioEventLoopGroup;
@@ -10,8 +10,8 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
 /**
+ *
  * @author Feyl
- * @date 2022/6/8 23:26
  */
 @Slf4j
 public class NettyFutureTest {
