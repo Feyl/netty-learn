@@ -34,8 +34,8 @@ public abstract class Message implements Serializable {
     public static final int GroupCreateResponseMessage = 5;
     public static final int GroupJoinRequestMessage = 6;
     public static final int GroupJoinResponseMessage = 7;
-    public static final int GroupQuitRequestMessage = 8;
-    public static final int GroupQuitResponseMessage = 9;
+    public static final int GroupExitRequestMessage = 8;
+    public static final int GroupExitResponseMessage = 9;
     public static final int GroupChatRequestMessage = 10;
     public static final int GroupChatResponseMessage = 11;
     public static final int GroupMembersRequestMessage = 12;
@@ -62,8 +62,8 @@ public abstract class Message implements Serializable {
         messageClasses.put(GroupCreateResponseMessage, GroupCreateResponseMessage.class);
         messageClasses.put(GroupJoinRequestMessage, GroupJoinRequestMessage.class);
         messageClasses.put(GroupJoinResponseMessage, GroupJoinResponseMessage.class);
-        messageClasses.put(GroupQuitRequestMessage, GroupQuitRequestMessage.class);
-        messageClasses.put(GroupQuitResponseMessage, GroupQuitResponseMessage.class);
+        messageClasses.put(GroupExitRequestMessage, GroupExitRequestMessage.class);
+        messageClasses.put(GroupExitResponseMessage, GroupExitResponseMessage.class);
         messageClasses.put(GroupChatRequestMessage, GroupChatRequestMessage.class);
         messageClasses.put(GroupChatResponseMessage, GroupChatResponseMessage.class);
         messageClasses.put(GroupMembersRequestMessage, GroupMembersRequestMessage.class);
