@@ -1041,8 +1041,8 @@ System.out.println(end - start);
 #### 阻塞
 
 * 阻塞模式下，相关方法都会导致线程暂停
-  * ServerSocketChannel.accept 会在没有连接建立时让线程暂停
-  * SocketChannel.read 会在没有数据可读时让线程暂停
+  * ServerSocketChannel.accept() 会在没有连接建立时让线程暂停
+  * SocketChannel.read() 会在没有数据可读时让线程暂停
   * 阻塞的表现其实就是线程暂停了，暂停期间不会占用 cpu，但线程相当于闲置
 * 单线程下，阻塞方法之间相互影响，几乎不能正常工作，需要多线程支持
 * 但多线程下，有新的问题，体现在以下方面
@@ -1096,8 +1096,8 @@ System.out.println("waiting...");
 #### 非阻塞
 
 * 非阻塞模式下，相关方法都会不会让线程暂停
-  * 在 ServerSocketChannel.accept 在没有连接建立时，会返回 null，继续运行
-  * SocketChannel.read 在没有数据可读时，会返回 0，但线程不必阻塞，可以去执行其它 SocketChannel 的 read 或是去执行 ServerSocketChannel.accept 
+  * 在 ServerSocketChannel.accept() 在没有连接建立时，会返回 null，继续运行
+  * SocketChannel.read() 在没有数据可读时，会返回 0，但线程不必阻塞，可以去执行其它 SocketChannel 的 read 或是去执行 ServerSocketChannel.accept() 
   * 写数据时，线程只是等待数据写入 Channel 即可，无需等 Channel 通过网络把数据发送出去
 * 但非阻塞模式下，即使没有连接建立，和可读数据，线程仍然在不断运行，白白浪费了 cpu
 * 数据复制过程中，线程实际还是阻塞的（AIO 改进的地方）
@@ -1473,7 +1473,8 @@ ld�
 
 #### 处理消息的边界
 
-![](img/0023.png)
+![](https://user-images.githubusercontent.com/68909090/177989666-81206218-2b99-4a7b-8fad-135570aa7365.png)
+
 
 * 一种思路是固定消息长度，数据包大小一样，服务器按预定长度读取，缺点是浪费带宽
 * 另一种思路是按分隔符拆分，缺点是效率低
@@ -1601,7 +1602,7 @@ System.in.read();
 
 * 每个 channel 都需要记录可能被切分的消息，因为 ByteBuffer 不能被多个 channel 共同使用，因此需要为每个 channel 维护一个独立的 ByteBuffer
 * ByteBuffer 不能太大，比如一个 ByteBuffer 1Mb 的话，要支持百万连接就要 1Tb 内存，因此需要设计大小可变的 ByteBuffer
-  * 一种思路是首先分配一个较小的 buffer，例如 4k，如果发现数据不够，再分配 8k 的 buffer，将 4k buffer 内容拷贝至 8k buffer，优点是消息连续容易处理，缺点是数据拷贝耗费性能，参考实现 [http://tutorials.jenkov.com/java-performance/resizable-array.html](http://tutorials.jenkov.com/java-performance/resizable-array.html)
+  * 一种思路是首先分配一个较小的 buffer，例如 4k，如果发现数据不够，再分配 8k 的 buffer，将 4k buffer 内容拷贝至 8k buffer，优点是消息连续容易处理，缺点是数据拷贝耗费性能，参考实现 [Java Resizable Array](http://tutorials.jenkov.com/java-performance/resizable-array.html)
   * 另一种思路是用多个数组组成 buffer，一个数组不够，把多出来的内容写入新的数组，与前面的区别是消息存储不连续解析复杂，优点是避免了拷贝引起的性能损耗
 
 
@@ -1609,7 +1610,6 @@ System.in.read();
 
 
 ### 4.5 处理 write 事件
-
 
 
 #### 一次无法写完例子
@@ -1717,7 +1717,6 @@ public class WriteClient {
 
 
 ### 4.6 更进一步
-
 
 
 #### 💡 利用多线程优化
