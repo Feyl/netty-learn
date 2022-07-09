@@ -307,7 +307,7 @@ public static void main(String[] args) throws InterruptedException {
 
 可以看到两个工人轮流处理 channel，但工人与 channel 之间进行了绑定
 
-![](img/0042.png)
+![](https://user-images.githubusercontent.com/68909090/178109352-05591c17-0acd-47b6-8548-1626d5404b26.png)
 
 
 
@@ -403,7 +403,7 @@ new ServerBootstrap()
 
 
 
-![](img/0041.png)
+![](https://user-images.githubusercontent.com/68909090/178109552-afc3e4ba-a886-4c6f-92c7-e7c645bfee8a.png)
 
 
 
@@ -496,8 +496,8 @@ channel 的主要作用
 
 * close() 可以用来关闭 channel
 * closeFuture() 用来处理 channel 的关闭
-  * sync 方法作用是同步等待 channel 关闭
-  * 而 addListener 方法是异步等待 channel 关闭
+  * sync() 方法作用是同步等待 channel 关闭
+  * 而 addListener() 方法是异步等待 channel 关闭
 * pipeline() 方法添加处理器
 * write() 方法将数据写入
 * writeAndFlush() 方法将数据写入并刷出
@@ -506,7 +506,7 @@ channel 的主要作用
 
 #### ChannelFuture
 
-这时刚才的客户端代码
+这是刚才的客户端代码
 
 ```java
 new Bootstrap()
@@ -565,10 +565,10 @@ System.out.println(channelFuture.channel()); // 3
 ```
 
 * 执行到 1 时，连接未建立，打印 `[id: 0x2e1884dd]`
-* 执行到 2 时，sync 方法是同步等待连接建立完成
+* 执行到 2 时，sync() 方法是同步等待连接建立完成
 * 执行到 3 时，连接肯定建立了，打印 `[id: 0x2e1884dd, L:/127.0.0.1:57191 - R:/127.0.0.1:8080]`
 
-除了用 sync 方法可以让异步操作同步以外，还可以使用回调的方式：
+除了用 sync() 方法可以让异步操作同步以外，还可以使用回调的方式：
 
 ```java
 ChannelFuture channelFuture = new Bootstrap()
