@@ -1621,7 +1621,6 @@ System.in.read();
   * 如果不取消，会每次可写均会触发 write 事件
 
 
-
 ```java
 public class WriteServer {
 
@@ -1959,36 +1958,36 @@ public class UdpClient {
 
 
 
-当调用一次 channel.read 或 stream.read 后，会切换至操作系统内核态来完成真正数据读取，而读取又分为两个阶段，分别为：
+当调用一次 channel.read() 或 stream.read() 后，会切换至操作系统内核态来完成真正数据读取，而读取又分为两个阶段，分别为：
 
 * 等待数据阶段
 * 复制数据阶段
 
-![](img/0033.png)
+![](https://user-images.githubusercontent.com/68909090/178084485-273b225c-01ef-4993-ae68-789635a45844.png)
 
 * 阻塞 IO
 
-  ![](img/0039.png)
+  ![阻塞 IO](https://user-images.githubusercontent.com/68909090/178084519-596ccba2-ec7f-439f-9e7e-c43b08a1e247.png)
 
-* 非阻塞  IO
+* 非阻塞 IO
 
-  ![](img/0035.png)
+  ![非阻塞 IO](https://user-images.githubusercontent.com/68909090/178084536-e29f4e55-e1bf-4102-8fc9-966f2cee8381.png)
 
 * 多路复用
 
-  ![](img/0038.png)
+  ![多路复用](https://user-images.githubusercontent.com/68909090/178084565-46b48023-0407-425d-a636-61612d2b7514.png)
 
 * 信号驱动
 
 * 异步 IO
 
-  ![](img/0037.png)
+  ![异步 IO](https://user-images.githubusercontent.com/68909090/178084606-eabc4df2-f031-452e-b1ac-c77c6ca36322.png)
 
 * 阻塞 IO vs 多路复用
 
-  ![](img/0034.png)
+  ![](https://user-images.githubusercontent.com/68909090/178084672-96bada4d-eb41-4ed1-a407-13ac329a84ed.png)
 
-  ![](img/0036.png)
+  ![](https://user-images.githubusercontent.com/68909090/178084678-36c80e9d-3542-4ec9-9c95-05ee5153f8fc.png)
 
 #### 🔖 参考
 
@@ -2015,7 +2014,7 @@ socket.getOutputStream().write(buf);
 
 内部工作流程是这样的：
 
-![](img/0024.png)
+![](https://user-images.githubusercontent.com/68909090/178084751-590ffe9a-4b74-43fb-b9ff-4d9a8c9bd136.png)
 
 1. java 本身并不具备 IO 读写能力，因此 read 方法调用后，要从 java 程序的**用户态**切换至**内核态**，去调用操作系统（Kernel）的读能力，将数据读入**内核缓冲区**。这期间用户线程阻塞，操作系统使用 DMA（Direct Memory Access）来实现文件读，其间也不会使用 cpu
 
@@ -2043,7 +2042,7 @@ socket.getOutputStream().write(buf);
 * ByteBuffer.allocate(10)  HeapByteBuffer 使用的还是 java 内存
 * ByteBuffer.allocateDirect(10)  DirectByteBuffer 使用的是操作系统内存
 
-![](img/0025.png)
+![](https://user-images.githubusercontent.com/68909090/178085018-323b8901-8e82-4b9d-bf36-173e35c5dd01.png)
 
 大部分步骤与优化前相同，不再赘述。唯有一点：java 可以使用 DirectByteBuf 将堆外内存映射到 jvm 内存中来直接访问使用
 
@@ -2057,7 +2056,7 @@ socket.getOutputStream().write(buf);
 
 进一步优化（底层采用了 linux 2.1 后提供的 sendFile 方法），java 中对应着两个 channel 调用 transferTo/transferFrom 方法拷贝数据
 
-![](img/0026.png)
+![](https://user-images.githubusercontent.com/68909090/178085382-be57abd7-aed7-4e95-8635-a9aa86522e9c.png)
 
 1. java 调用 transferTo 方法后，要从 java 程序的**用户态**切换至**内核态**，使用 DMA将数据读入**内核缓冲区**，不会使用 cpu
 2. 数据从**内核缓冲区**传输到 **socket 缓冲区**，cpu 会参与拷贝
@@ -2072,7 +2071,7 @@ socket.getOutputStream().write(buf);
 
 进一步优化（linux 2.4）
 
-![](img/0027.png)
+![](https://user-images.githubusercontent.com/68909090/178085387-b8b205c0-75ee-4152-8328-271414a0150a.png)
 
 1. java 调用 transferTo 方法后，要从 java 程序的**用户态**切换至**内核态**，使用 DMA将数据读入**内核缓冲区**，不会使用 cpu
 2. 只会将一些 offset 和 length 信息拷入 **socket 缓冲区**，几乎无消耗
