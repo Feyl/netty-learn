@@ -8,6 +8,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
+ * Java IO流 RandomAccessFile:https://www.jianshu.com/p/360e37539266
+ *
  * @author Feyl
  */
 @Slf4j

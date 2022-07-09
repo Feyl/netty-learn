@@ -11,6 +11,8 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 多线程优化事件处理
+ *
  * @author Feyl
  */
 @Slf4j

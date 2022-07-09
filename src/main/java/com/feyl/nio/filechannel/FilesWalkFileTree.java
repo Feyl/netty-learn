@@ -39,7 +39,7 @@ public class FilesWalkFileTree {
      *
      * @throws IOException
      */
-    private static void m2() throws IOException {
+    private static void countJarFile() throws IOException {
         AtomicInteger jarCount = new AtomicInteger();
         Files.walkFileTree(Paths.get("D:\\Java\\JDK1.8"), new SimpleFileVisitor<Path>(){
             @Override
@@ -59,11 +59,10 @@ public class FilesWalkFileTree {
      *
      * @throws IOException
      */
-    private static void m1() throws IOException {
+    private static void countDirAndFile() throws IOException {
         AtomicInteger dirCount = new AtomicInteger();
         AtomicInteger fileCount = new AtomicInteger();
         //设计模式：访问者模式
-
         Files.walkFileTree(Paths.get("D:\\Java\\JDK1.8"), new SimpleFileVisitor<Path>(){
             @Override
             public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {

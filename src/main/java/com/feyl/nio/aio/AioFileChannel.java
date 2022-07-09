@@ -20,12 +20,12 @@ import static com.feyl.nio.util.ByteBufferUtil.debugAll;
 public class AioFileChannel {
     public static void main(String[] args) throws IOException {
         try (AsynchronousFileChannel channel = AsynchronousFileChannel.open(Paths.get("data.txt"), StandardOpenOption.READ)) {
+            ByteBuffer buffer = ByteBuffer.allocate(16);
+            log.debug("read begin...");
             // 参数1 ByteBuffer
             // 参数2 读取的起始位置
             // 参数3 附件
             // 参数4 回调对象 CompletionHandler
-            ByteBuffer buffer = ByteBuffer.allocate(16);
-            log.debug("read begin...");
             channel.read(buffer, 0, buffer, new CompletionHandler<Integer, ByteBuffer>() {
                 @Override // read 成功
                 public void completed(Integer result, ByteBuffer attachment) {
