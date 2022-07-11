@@ -339,7 +339,7 @@ public class HelloWorldClient {
 ch.pipeline().addLast(new FixedLengthFrameDecoder(8));
 ```
 
-客户端测试代码，注意, 采用这种方法后，客户端什么时候 flush 都可以
+客户端测试代码，注意，采用这种方法后，客户端什么时候 flush 都可以
 
 ```java
 public class HelloWorldClient {
@@ -645,6 +645,8 @@ public class HelloWorldClient {
 // 最大长度，长度偏移，长度占用字节，长度调整，剥离字节数
 ch.pipeline().addLast(new LengthFieldBasedFrameDecoder(1024, 0, 1, 0, 1));
 ```
+> 参考：[LengthFieldBasedFrameDecoder的使用](https://blog.csdn.net/maosijunzi/article/details/78591667)
+
 
 客户端代码
 
@@ -804,7 +806,7 @@ public class HelloWorldClient {
 
 TCP/IP 中消息传输基于流的方式，没有边界。
 
-协议的目的就是划定消息的边界，制定通信双方要共同遵守的通信规则
+协议的目的就是**划定消息的边界**，制定通信双方要共同遵守的**通信规则**
 
 例如：在网络上传输
 
