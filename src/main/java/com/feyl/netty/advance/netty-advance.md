@@ -210,13 +210,13 @@ serverBootstrap.option(ChannelOption.SO_RCVBUF, 10);
 >
 > * TCP 以一个段（segment）为单位，每发送一个段就需要进行一次确认应答（ack）处理，但如果这么做，缺点是包的往返时间越长性能就越差
 >
->   ![](img/0049.png)
+>   ![](https://user-images.githubusercontent.com/68909090/178228363-1ded91fd-de08-4aef-b6c6-ba91cd72d219.png)
 >
 > 
 >
 > * 为了解决此问题，引入了窗口概念，窗口大小即决定了无需等待应答而可以继续发送的数据最大值
 >
->   ![](img/0051.png)
+>   ![](https://user-images.githubusercontent.com/68909090/178228425-2d08b75d-1894-429b-aeb7-df4d4a167649.png)
 >
 > * 窗口实际就起到一个缓冲区的作用，同时也能起到流量控制的作用
 >
@@ -242,11 +242,11 @@ serverBootstrap.option(ChannelOption.SO_RCVBUF, 10);
 >   * TCP 在传递大量数据时，会按照 MSS 大小将数据进行分割发送
 >   * MSS 的值在三次握手时通知对方自己 MSS 的值，然后在两者之间选择一个小值作为 MSS
 >
->   <img src="img/0031.jpg" style="zoom:50%;" />
+>   ![](https://user-images.githubusercontent.com/68909090/178228493-f3564e2a-7cea-40ac-9266-dadde41bff26.png)
 
 
 
-> Nagle 算法
+> [Nagle 算法](https://zh.wikipedia.org/wiki/納格算法)
 >
 > * 即使发送一个字节，也需要加入 tcp 头和 ip 头，也就是总字节数会使用 41 bytes，非常不经济。因此为了提高网络利用率，tcp 希望尽可能发送足够大的数据，这就是 Nagle 算法产生的缘由
 > * 该算法是指发送端即使还有应该发送的数据，但如果这部分数据很少的话，则进行延迟发送
@@ -256,6 +256,12 @@ serverBootstrap.option(ChannelOption.SO_RCVBUF, 10);
 >   * 已发送的数据都收到 ack 时，则需要发送
 >   * 上述条件不满足，但发生超时（一般为 200ms）则需要发送
 >   * 除上述情况，延迟发送
+>   
+>   参考资料：
+>   - [Nagle算法的一些理解](https://segmentfault.com/a/1190000022929052)
+>   - [Nagle算法_百度百科](https://baike.baidu.com/item/Nagle算法)
+
+
 
 
 
