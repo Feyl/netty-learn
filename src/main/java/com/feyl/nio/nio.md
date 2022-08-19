@@ -854,8 +854,8 @@ Path path = Paths.get("helloword/d1");
 Files.createDirectory(path);
 ```
 
-* 如果目录已存在，会抛异常 FileAlreadyExistsException
-* 不能一次创建多级目录，否则会抛异常 NoSuchFileException
+* 如果目录已存在，会抛异常 `FileAlreadyExistsException`
+* 不能一次创建多级目录，否则会抛异常 `NoSuchFileException`
 
 
 
@@ -877,7 +877,7 @@ Path target = Paths.get("helloword/target.txt");
 Files.copy(source, target);
 ```
 
-* 如果文件已存在，会抛异常 FileAlreadyExistsException
+* 如果文件已存在，会抛异常 `FileAlreadyExistsException`
 
 如果希望用 source 覆盖掉 target，需要用 StandardCopyOption 来控制
 
