@@ -896,7 +896,7 @@ Path target = Paths.get("helloword/data.txt");
 Files.move(source, target, StandardCopyOption.ATOMIC_MOVE);
 ```
 
-* StandardCopyOption.ATOMIC_MOVE 保证文件移动的原子性
+* `StandardCopyOption.ATOMIC_MOVE` 保证文件移动的原子性
 
 
 
@@ -908,7 +908,7 @@ Path target = Paths.get("helloword/target.txt");
 Files.delete(target);
 ```
 
-* 如果文件不存在，会抛异常 NoSuchFileException
+* 如果文件不存在，会抛异常 `NoSuchFileException`
 
 
 
@@ -920,7 +920,7 @@ Path target = Paths.get("helloword/d1");
 Files.delete(target);
 ```
 
-* 如果目录还有内容，会抛异常 DirectoryNotEmptyException
+* 如果目录还有内容，会抛异常 `DirectoryNotEmptyException`
 
 
 
