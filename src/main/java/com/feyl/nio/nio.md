@@ -1238,8 +1238,8 @@ int count = selector.selectNow();
 >   * 客户端发送数据过来，客户端正常、异常关闭时，都会触发 read 事件，另外如果发送的数据大于 buffer 缓冲区，会触发多次读取事件
 >   * channel 可写，会触发 write 事件
 >   * 在 linux 下 nio bug 发生时
-> * 调用 selector.wakeup()
-> * 调用 selector.close()
+> * 调用 `selector.wakeup()`
+> * 调用 `selector.close()`
 > * selector 所在线程 interrupt
 
 
