@@ -1872,8 +1872,8 @@ public class ChannelDemo7 {
 
 #### 💡 如何拿到 cpu 个数
 
-> * Runtime.getRuntime().availableProcessors() 如果工作在 docker 容器下，因为容器不是物理隔离的，会拿到物理 cpu 个数，而不是容器申请时的个数
-> * 这个问题直到 jdk 10 才修复，使用 jvm 参数 UseContainerSupport 配置， 默认开启
+> * `Runtime.getRuntime().availableProcessors()` 如果工作在 docker 容器下，因为容器不是物理隔离的，会拿到物理 cpu 个数，而不是容器申请时的个数
+> * 这个问题直到 jdk 10 才修复，使用 jvm 参数 `UseContainerSupport` 配置， 默认开启
 
 
 
@@ -1958,7 +1958,7 @@ public class UdpClient {
 
 
 
-当调用一次 channel.read() 或 stream.read() 后，会切换至操作系统内核态来完成真正数据读取，而读取又分为两个阶段，分别为：
+当调用一次 `channel.read()` 或 `stream.read()` 后，会切换至操作系统内核态来完成真正数据读取，而读取又分为两个阶段，分别为：
 
 * 等待数据阶段
 * 复制数据阶段
